@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/mydatabase" 
+			auth="Container"
+			type="javax.sql.DataSource"
+			username="root"
+			password="root"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/eeproject?autoReconnect=true"
+			validationQuery="select 1"
+			maxActive="10"
+			maxIdle="4"/>
+</Context>
