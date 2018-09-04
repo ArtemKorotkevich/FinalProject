@@ -1,0 +1,15 @@
+.head-block,.top-menu,.top-material,.left-sidebar,.content{
+    background:#ccc;
+    margin-bottom:1px;
+}
+.head-block{
+    height:150px;
+}
+.pull-right{
+	margin-top: -50px;
+	margin-right: -12px;
+}
+.user {
+	margin-top: -55px;
+	margin-left: 950px;
+}

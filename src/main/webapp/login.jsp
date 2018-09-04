@@ -27,6 +27,7 @@
 										<input type = "password" name = "pass" class="form-control" placeholder = "password">																				</div>
 										<br>
 									<div class="pull-right">
+										
 										<button type="submit" class = "btn btn-outline-dark">Login</button>
 									</div>
 									<div class="text-center">

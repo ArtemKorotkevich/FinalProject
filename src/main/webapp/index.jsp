@@ -10,11 +10,35 @@
 <title>you page</title>
 </head>
 <body>
+<style><%@include file="/css/dopstyle.css"%></style>
+	<div class = "container">
+			<div class = "row">
+						<div class ="col-md-12 head-block">
+							<div class = "text">
+								<h2>do not forget about your affairs!</h2>
+							</div>
+							
+							 <div class="pull-right">
+							 	<button type="submit" class = "btn btn-outline-orange"><a href= "logout"> Logout </a></button>
+								 	</div>
+								 		<div class="user">
+								 		<h3>hello ${user.login}|</h3>
+							 			</div>
+						</div>
+					</div>
+			</div>
+	</div>
 <div class="container">
-		<h3>hello!</h3>
 		<input type="button" value="add task"
 					onclick='location.href = "addTask.jsp"'/>
+					<input id = "getTask" type="button" value="Today" onclick='location.href = "tasks?section=today"'/>
+					
+					<div id = "contentTask">
+					
+					</div>
 	</div>
-	
+	<script type="text/javascript">
+	<%@include file="/js/script.js"%>
+</script>
 </body>
 </html>
