@@ -10,14 +10,15 @@ function getTask(){
 	 request.onreadystatechange = function(){
 		 if(request.readyState == 4 && request.status == 200){
 			 var jsonData = JSON.parse(request.responseText);
-			 for(var i =0; i < request.length; i++){
-				 document.querySelector('#contentTask').innerHTML = jsonData[i];
-			 }
+			 for(i =0; i < jsonData.length; i ++){
+				 document.querySelector('#contentTask').innerHTML = jsonData;
+				 }
 			 if(jsonData == null){
 				 alert("you do not have any assignments for today");
 			 }
 		 }
 	 }
+	 console.warn(request.responseText);
 	 request.open('GET','tasks?section=today');
 	 request.send();
 }

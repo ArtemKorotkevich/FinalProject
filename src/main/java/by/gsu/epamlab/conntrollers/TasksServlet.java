@@ -33,9 +33,10 @@ public class TasksServlet extends HttpServlet {
 	      List<Task> tasksList = tasksSource.getTaskByUser(user, SectionDayEnums.getValueByParams(request));
 	      JSONArray jsonArray = new JSONArray(tasksList);
 	      System.out.println(jsonArray);
-	      request.setAttribute("section", SectionDayEnums.getValueByParams(request).name());
-	      request.setAttribute(Constant.TASKS, jsonArray);
-	      ServletUtilite.jump(Constant.INDEX_PAGE, request, response);
+	      response.getWriter().print(jsonArray);
+	     // request.setAttribute("section", SectionDayEnums.getValueByParams(request).name());
+	      //request.setAttribute(Constant.TASKS, jsonArray);
+	     // ServletUtilite.jump(Constant.INDEX_PAGE, request, response);
 	    }catch (DAOException e){
 	      ServletUtilite.jumpError(Constant.ERROR_KEY_TASK, Constant.INDEX_PAGE, request, response);
 	    }
