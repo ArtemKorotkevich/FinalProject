@@ -34,7 +34,29 @@
 					<input id = "getTask" type="button" value="Today" onclick='location.href = "tasks?section=today"'/>
 					
 					<div id = "contentTask">
-					
+						<table class="table table-dark">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>head</th>
+									<th>description</th>
+									<th>date Create</th>
+									<th>Date of change</th>
+									<th>report</th>
+									<th><input type="hidden" name="idtask" value={"$data.idtask"}></th>
+								</tr>
+								<div id = "tasks">
+									<tr>
+										<td> <input type="checkbox" name="task-${data.idtasks}"></td>
+										<td> ${data.dateCreate} </td>
+										<td>${data.header}</td>
+										<td>${data.description}</td>
+										<td>${data.report}</td>
+									<tr>
+								</div>
+							</thead>
+
+						</table>
 					</div>
 	</div>
 	<script type="text/javascript">

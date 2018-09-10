@@ -1,9 +1,22 @@
 window.onload = function(){
-	document.querySelector('#getTask').onclick = function(){
-		getTask();
-	}
-	
-}
+	//document.querySelector('#getTask').onclick = function(){
+		fetch('tasks?section=today').then(res => res.json()).then((data)=>{console.log(data);})
+//		fetch('tasks?section=today')
+//		.then(function(response) {
+//			return response.json();
+//		})
+//		.then(function(myJson){
+//			console.log(JSON.stringify(myJson));
+//		});
+	//}	
+};
+
+//function showtask(){
+//	window.onload() = function() {
+//		var data = JSON.parse();
+//	}
+//}
+
 
 function getTask(){
 	request = new XMLHttpRequest();
