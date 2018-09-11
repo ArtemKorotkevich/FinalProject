@@ -31,31 +31,24 @@
 <div class="container">
 		<input type="button" value="add task"
 					onclick='location.href = "addTask.jsp"'/>
-					<input id = "getTask" type="button" value="Today" onclick='location.href = "tasks?section=today"'/>
+					<input id = "todayTasks" type="button" value="Today"/>
+					<input id = "tomorrowTasks" type="button" value="Tomorrow"/>
+					<input id = "getSomeday" type="button" value="Someday"/>
+					<input id = "getfixed" type="button" value="Fixed"/>
+					<input id = "getRecycle_bin" type="button" value="Recycle bin"/>
 					
 					<div id = "contentTask">
 						<table class="table table-dark">
-							<thead>
+							<thead id="tasks">
 								<tr>
-									<th>#</th>
-									<th>head</th>
 									<th>description</th>
 									<th>date Create</th>
 									<th>Date of change</th>
 									<th>report</th>
 									<th><input type="hidden" name="idtask" value={"$data.idtask"}></th>
-								</tr>
-								<div id = "tasks">
-									<tr>
-										<td> <input type="checkbox" name="task-${data.idtasks}"></td>
-										<td> ${data.dateCreate} </td>
-										<td>${data.header}</td>
-										<td>${data.description}</td>
-										<td>${data.report}</td>
-									<tr>
-								</div>
+								</tr>									
 							</thead>
-
+							<tbody id="tasksBody"></tbody>
 						</table>
 					</div>
 	</div>

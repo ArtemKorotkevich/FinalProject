@@ -108,14 +108,6 @@ public class DBTaskDAO implements IDAOTaskImplementation {
       return userList;
     }catch(SQLException e){
       throw new DAOException(e);
-    }finally{
-      try{
-        rs.close();
-      }catch(SQLException e){
-        throw new DAOException(e);
-      }
     }
   }
-
-
 }
