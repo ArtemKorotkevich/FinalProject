@@ -33,14 +33,16 @@
 					onclick='location.href = "addTask.jsp"'/>
 					<input id = "todayTasks" type="button" value="Today"/>
 					<input id = "tomorrowTasks" type="button" value="Tomorrow"/>
-					<input id = "getSomeday" type="button" value="Someday"/>
-					<input id = "getfixed" type="button" value="Fixed"/>
-					<input id = "getRecycle_bin" type="button" value="Recycle bin"/>
+					<input id = "somedayTasks" type="button" value="Someday"/>
+					<input id = "fixedTasks" type="button" value="Fixed"/>
+					<input id = "recycle_binTasks" type="button" value="Recycle Bin"/>
 					
 					<div id = "contentTask">
 						<table class="table table-dark">
 							<thead id="tasks">
 								<tr>
+									<th>#</th>
+									<th>header</th>
 									<th>description</th>
 									<th>date Create</th>
 									<th>Date of change</th>

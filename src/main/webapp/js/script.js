@@ -3,10 +3,12 @@ function getTableRow(item) {
 		return;
 	}
 	return 	'<tr>' +
+			'  <td><input type="checkbox" name="task-'+item.idtasks+'"> </td>'+
+			'  <td>' + item.header + '</td>' +
 			'  <td>' + item.description + '</td>' +
 			'  <td>' + item.dateCreate + '</td>' +
 			'  <td>' + item.dateModified + '</td>' +
-			'  <td><input name="report" type="checkbox" value="' + item.report + '"></td>' +
+			'  <td>' + item.report + '</td>' +
 			'  <td><input name="taskId" type="hidden" value="' + item.idtasks + '"></td>' +
 			'</tr>';
 }
@@ -33,17 +35,33 @@ function loadData(url){
 const tasksNode = document.getElementById('tasksBody');
 const todayTasks = document.getElementById('todayTasks');
 const tomorrowTasks = document.getElementById('tomorrowTasks');
+const somedayTasks = document.getElementById('somedayTasks');
+const fixedTasks = document.getElementById('fixedTasks');
+const recycle_binTasks = document.getElementById('recycle_binTasks');
+
 
 document.addEventListener('DOMContentLoaded', function() {
-	loadData('tasks?section=today');		
+	loadData('tasks?section=alltask');		
 });
 
 todayTasks.addEventListener('click', function() {
 	loadData('tasks?section=today');		
-});
+}); 
 
 tomorrowTasks.addEventListener('click', function() {
 	loadData('tasks?section=tomorrow');		
+});
+
+somedayTasks.addEventListener('click', function() {
+	loadData('tasks?section=someday');		
+});
+
+fixedTasks.addEventListener('click', function() {
+	loadData('tasks?section=fixed');		
+});
+
+recycle_binTasks.addEventListener('click', function() {
+	loadData('tasks?section=recycle_bin');		
 });
 
 

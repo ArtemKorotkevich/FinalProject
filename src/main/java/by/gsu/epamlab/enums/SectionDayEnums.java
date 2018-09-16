@@ -6,6 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import by.gsu.epamlab.beans.User;
 
 public enum SectionDayEnums {
+  
+  ALLTASK{
+
+    @Override
+    public String getQuerery(User user) {
+      return "SELECT * FROM eeproject.tasks "
+          + "WHERE UserId = (SELECT UserId FROM eeproject.user "
+          + "WHERE login = '" + user.getLogin().trim() + "');";
+    }
+    
+  },
   TODAY{
 
     @Override
@@ -14,7 +25,7 @@ public enum SectionDayEnums {
       return  "SELECT * FROM eeproject.tasks "
           + "WHERE UserId = (SELECT UserId FROM eeproject.user "
           + "WHERE login = '" + user.getLogin().trim() + "')"
-          + "AND dateCreate = '"+ today + "'";
+          + "AND dateCreate = '"+ today + "' AND recycle_Bin = 0 AND report = 0;";
     }
 
   },
@@ -27,9 +38,8 @@ public enum SectionDayEnums {
       return "SELECT * FROM eeproject.tasks "
       + "WHERE UserId = (SELECT UserId FROM eeproject.user "
       + "WHERE login = '" + user.getLogin().trim() + "')"
-      + "AND dateModified = '"+ tomorrow + "'"
-      + "AND recycle_Bin = 0"
-      + "AND report = 0";
+      + "AND dateModified = '"+ tomorrow + "' AND recycle_Bin = 0 AND report = 0;";
+      
     }
 
   },
@@ -42,9 +52,7 @@ public enum SectionDayEnums {
       return  "SELECT * FROM eeproject.tasks "
       + "WHERE UserId = (SELECT UserId FROM eeproject.user "
       + "WHERE login = '" + user.getLogin().trim() + "')"
-      + "AND dateModified > '"+ tomorrow +"' "
-          + " AND recycle_Bin = 0"
-          + "AND report = 0";
+      + "AND dateModified > '"+ tomorrow +"' AND recycle_Bin = 0 AND report = 0;";
     }
 
   },
@@ -56,7 +64,7 @@ public enum SectionDayEnums {
           + "WHERE UserId = (SELECT UserId FROM eeproject.user "
           + "WHERE login = '" + user.getLogin().trim() + "')"
               + "AND report = 1"
-              + " AND recycle_Bin = 0";
+              + " AND recycle_Bin = 0;";
     }
 
   },
@@ -67,7 +75,7 @@ public enum SectionDayEnums {
       return "SELECT * FROM eeproject.tasks "
           + "WHERE UserId = (SELECT UserId FROM eeproject.user "
           + "WHERE login = '" + user.getLogin().trim() + "')"
-          + "AND recycle_Bin = 1";
+          + "AND recycle_Bin = 1;";
     }
 
   };

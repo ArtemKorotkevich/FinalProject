@@ -25,6 +25,7 @@ public class TasksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    final User user = (User) request.getSession().getAttribute(Constant.USER);
 	    if(user == null){
+	      System.out.println("usera net");
 	      ServletUtilite.jump(Constant.LOGIN_PAGE, request, response);
 	    }
 	    System.out.println(user);
@@ -33,12 +34,10 @@ public class TasksServlet extends HttpServlet {
 	      List<Task> tasksList = tasksSource.getTaskByUser(user, SectionDayEnums.getValueByParams(request));
 	      JSONArray jsonArray = new JSONArray(tasksList);
 	      System.out.println(jsonArray);
-	      response.getWriter().print(jsonArray);
-	     // request.setAttribute("section", SectionDayEnums.getValueByParams(request).name());
-	      //request.setAttribute(Constant.TASKS, jsonArray);
-	     // ServletUtilite.jump(Constant.INDEX_PAGE, request, response);
+	      response.getWriter().println(jsonArray);
 	    }catch (DAOException e){
-	      ServletUtilite.jumpError(Constant.ERROR_KEY_TASK, Constant.INDEX_PAGE, request, response);
+	      e.printStackTrace();
+	      //ServletUtilite.jumpError(Constant.ERROR_KEY_TASK, Constant.INDEX_PAGE, request, response);
 	    }
 	}
 
