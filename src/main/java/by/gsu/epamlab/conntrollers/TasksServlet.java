@@ -25,7 +25,6 @@ public class TasksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    final User user = (User) request.getSession().getAttribute(Constant.USER);
 	    if(user == null){
-	      System.out.println("usera net");
 	      ServletUtilite.jump(Constant.LOGIN_PAGE, request, response);
 	    }
 	    System.out.println(user);

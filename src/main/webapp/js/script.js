@@ -3,7 +3,7 @@ function getTableRow(item) {
 		return;
 	}
 	return 	'<tr>' +
-			'  <td><input type="checkbox" name="task-'+item.idtasks+'"> </td>'+
+			'  <td><input type="checkbox" name="task-' + item.idtasks + '"> </td>'+
 			'  <td>' + item.header + '</td>' +
 			'  <td>' + item.description + '</td>' +
 			'  <td>' + item.dateCreate + '</td>' +
@@ -32,12 +32,24 @@ function loadData(url){
 		});
 }
 
+function deleteTasks(getIdTasks){
+	return fetch('DeleteTasks', { 
+			method: 'POST',
+			body: JSON.stringify(getIdTasks)
+		})
+		.then(function(response) {
+			console.log("Delete");
+			//return response.getIdTasks;
+		});
+}
+
 const tasksNode = document.getElementById('tasksBody');
 const todayTasks = document.getElementById('todayTasks');
 const tomorrowTasks = document.getElementById('tomorrowTasks');
 const somedayTasks = document.getElementById('somedayTasks');
 const fixedTasks = document.getElementById('fixedTasks');
 const recycle_binTasks = document.getElementById('recycle_binTasks');
+const del = document.getElementById('delete');
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -64,9 +76,20 @@ recycle_binTasks.addEventListener('click', function() {
 	loadData('tasks?section=recycle_bin');		
 });
 
+del.addEventListener('click', function() {
+	deleteTasks(getTasksIds());
+});
 
 
+function getTasksIds(){
+	const items =	[...document.querySelectorAll('input[name^="task-"][type="checkbox"]')]
+		.filter((elem = {}) => elem.checked)
+		.map((elem = {}) => elem.name);
+	console.log(JSON.stringify(items))
+	return items;
+}
 
+//body !!!
 //window.onload = function(){
 //
 //	document.querySelector('#getTask').onclick = function(){

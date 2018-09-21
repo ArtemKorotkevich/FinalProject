@@ -13,7 +13,7 @@ public enum SectionDayEnums {
     public String getQuerery(User user) {
       return "SELECT * FROM eeproject.tasks "
           + "WHERE UserId = (SELECT UserId FROM eeproject.user "
-          + "WHERE login = '" + user.getLogin().trim() + "');";
+          + "WHERE login = '" + user.getLogin().trim() + "')AND recycle_Bin = 0;";
     }
     
   },

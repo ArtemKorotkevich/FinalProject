@@ -47,10 +47,10 @@
 									<th>date Create</th>
 									<th>Date of change</th>
 									<th>report</th>
-									<th><input type="hidden" name="idtask" value={"$data.idtask"}></th>
 								</tr>									
 							</thead>
-							<tbody id="tasksBody"></tbody>
+							<tbody id = "tasksBody"></tbody>
+							<input id = "delete" type="button" value="delete"/>
 						</table>
 					</div>
 	</div>
