@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ import by.gsu.epamlab.exception.DAOException;
 import by.gsu.epamlab.factory.TaskDAOFactory;
 
 
-@WebServlet("/ExecutedTasksServlet")
+@WebServlet("/ExecutedTasks")
 public class ExecutedTasksServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -22,22 +23,22 @@ public class ExecutedTasksServlet extends HttpServlet {
     try {
       TaskDAOFactory
       .getTaskDAO("db")
-      .executedTasks(getTasksIds(request));
+      .executedTasks(extractPostRequestBody(request));
     } catch (DAOException e) {
-      e.printStackTrace();
-    } catch (ParseException e) {
       e.printStackTrace();
     }
   }
-  private static List<Integer> getTasksIds(HttpServletRequest request) throws ParseException{
-    List<Integer> ids = new ArrayList<>();
-    Enumeration<String>params = request.getParameterNames();
-    while(params.hasMoreElements()){
-      String param = params.nextElement();
-      if(param.startsWith("tasks-")){
-        ids.add(Integer.parseInt(param.split("-")[1]));
-      }
-    }
+  private static List<Integer> extractPostRequestBody(HttpServletRequest request)throws IOException {
+    List<Integer>ids = new ArrayList<>();
+    @SuppressWarnings("resource")
+    Scanner sñ = new Scanner(request.getInputStream(),"UTF-8").useDelimiter(",");
+    while(sñ.hasNextLine()){
+      String param = sñ.next();
+      System.out.println(param);
+      int id = Integer.parseInt(param.trim().split("[\\.,\\s!;?:\"']")[1]);
+      ids.add(id); 
+    } 
+    System.out.println(ids);
     return ids;
   }
 }

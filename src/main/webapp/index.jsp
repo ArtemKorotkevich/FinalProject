@@ -50,9 +50,10 @@
 								</tr>									
 							</thead>
 							<tbody id = "tasksBody"></tbody>
-							<input id = "delete" type="button" value="delete"/>
 						</table>
 					</div>
+					<input id = "delete" type="button" value="delete"/>
+					<input id = "excuted" type="button" value="excuted"/>
 	</div>
 	<script type="text/javascript">
 	<%@include file="/js/script.js"%>

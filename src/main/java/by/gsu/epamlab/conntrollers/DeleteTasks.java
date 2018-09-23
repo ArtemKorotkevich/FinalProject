@@ -39,44 +39,20 @@ public class DeleteTasks extends HttpServlet {
       e.printStackTrace();
     }
   }
-  //  private static List<Integer> getTaskId(List<String>)throws ParseException{
-  //    List<Integer>ids = new ArrayList<>();
-  //  //  Enumeration<String> params =  (request.getParameterNames()); 
-  //    ArrayList<String> parametrNames = new ArrayList<>();
-  //
-  //    while(params.hasMoreElements()){
-  //      String param =(String) params.nextElement();
-  //      parametrNames.add(param);
-  //      System.out.println(parametrNames);
-  //      if(param.startsWith(param)){
-  //        ids.add(Integer.parseInt(param.split("-")[1]));
-  //        System.out.println(ids);
-  //      }
-  //    }
-  //    //System.out.println(ids);
-  //    return ids;
-  //
-  //  }
 
   private static List<Integer> extractPostRequestBody(HttpServletRequest request)throws IOException {
     List<Integer>ids = new ArrayList<>();
-    if("POST".equalsIgnoreCase(request.getMethod())){
-      Scanner s = new Scanner(request.getInputStream(),"UTF-8").useDelimiter("\\\\");
-      System.out.println(s);
-      while(s.hasNextLine()){
-        String param = s.next();
-        System.out.println(param);
-        if(param.startsWith("task-")){
-          int id = Integer.parseInt(param.split("-")[1]);
-          System.out.println("id =" + id);
-          ids.add(id);
-        }
-      }       
-    }
-    System.out.println(ids);
+    @SuppressWarnings("resource")
+    Scanner sñ = new Scanner(request.getInputStream(),"UTF-8").useDelimiter(",");
+    while(sñ.hasNextLine()){
+      String param = sñ.next(); 
+      int id = Integer.parseInt(param.trim().split("[\\.,\\s!;?:\"']")[1]);
+      ids.add(id); 
+    } 
     return ids;
-
   }
-
 }
+
+
+
 
