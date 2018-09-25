@@ -11,6 +11,7 @@ public class Task {
   private String description;
   private boolean report;
   private boolean recycleBin;
+  private String URL;
 
   public User getUser() {
     return user;
@@ -42,6 +43,9 @@ public class Task {
 
   public boolean isRecycleBin() {
     return recycleBin;
+  }
+  public String  getURL(){
+    return URL;
   }
 
   public Task setUser(User user) {
@@ -83,13 +87,18 @@ public class Task {
     this.recycleBin = recycleBin;
     return this;
   }
+  
+  public Task setURL(String url){
+    this.URL = url;
+    return this;
+  }
 
   public Task() {
     super();
   }
 
   public Task(User user, int idtasks, LocalDate dateCreate, LocalDate dateModified, String header,
-      String description, boolean report, boolean recycleBin) {
+      String description, boolean report, boolean recycleBin, String url) {
     super();
     this.user = user;
     this.idtasks = idtasks;
@@ -99,13 +108,14 @@ public class Task {
     this.description = description;
     this.report = report;
     this.recycleBin = recycleBin;
+    this.URL = url;
   }
 
   @Override
   public String toString() {
     return "Task [user=" + user + ", idtasks=" + idtasks + ", dateCreate=" + dateCreate
         + ", dateModified=" + dateModified + ", header=" + header + ", description=" + description
-        + ", report=" + report + ", recycleBin=" + recycleBin + "]";
+        + ", report=" + report + ", recycleBin=" + recycleBin + "url = " + URL+ "]";
   }
 
 

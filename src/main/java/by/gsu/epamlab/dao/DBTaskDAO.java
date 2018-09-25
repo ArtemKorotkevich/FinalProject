@@ -103,7 +103,7 @@ public class DBTaskDAO implements IDAOTaskImplementation {
       rs = connection.createStatement().executeQuery(sectionDayEnums.getQuerery(user));
       while(rs.next()){
         userList.add(TaskDAOFactory.getTasksFromFactory(user, rs.getInt("idtasks"), rs.getDate("dateCreate").toLocalDate(),
-            rs.getDate("dateModified").toLocalDate(), rs.getString("header"), rs.getString("description"), rs.getBoolean("report"), rs.getBoolean("recycle_Bin")));
+            rs.getDate("dateModified").toLocalDate(), rs.getString("header"), rs.getString("description"), rs.getBoolean("report"), rs.getBoolean("recycle_Bin"),rs.getString("url")));
       }
       return userList;
     }catch(SQLException e){
@@ -116,4 +116,21 @@ public class DBTaskDAO implements IDAOTaskImplementation {
     //      }
     //    }
   }
+
+  @Override
+  public void setFileURLForTask(Task task, String fileName) throws DAOException {
+    String Update = "UPDATE eeproject.tasks SET fileURL = ? WHERE idtasks = ?;";
+    PreparedStatement ps = null;
+    try{
+      ps = connection.prepareStatement(Update);
+        synchronized (LOCK) {
+          ps.setString(1, task.getURL()); 
+          ps.setInt(2, task.getIdtasks());
+          ps.execute();
+        }
+    }catch(SQLException e){
+      throw new DAOException(e);
+    }
+  }
+
 }

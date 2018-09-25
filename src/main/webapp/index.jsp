@@ -54,6 +54,7 @@
 					</div>
 					<input id = "delete" type="button" value="delete"/>
 					<input id = "excuted" type="button" value="excuted"/>
+					<input id = "delInDB" type ="button" value="delet of recycli bin"/> 
 	</div>
 	<script type="text/javascript">
 	<%@include file="/js/script.js"%>

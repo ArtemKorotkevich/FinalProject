@@ -9,6 +9,8 @@ function getTableRow(item) {
 			'  <td>' + item.dateCreate + '</td>' +
 			'  <td>' + item.dateModified + '</td>' +
 			'  <td>' + item.report + '</td>' +
+			'  <td><input class="file-'+ item.idtasks +'" type = "file" name = "file"></td>' +
+			'  <td><input type="button" class="upload-file-button" data-task-id="' + item.idtasks + '"> </td>' +
 			'  <td><input name="taskId" type="hidden" value="' + item.idtasks + '"></td>' +
 			'</tr>';
 }
@@ -24,16 +26,29 @@ function loadToTemplate(node, data) {
 
 function loadData(url){
 	return fetch(url)
-		.then(function(res) {
-			return res.json();
-		})
-		.then(function(data) {
-			loadToTemplate(tasksNode, data);
+		.then((res) => res.json())
+		.then((data) => loadToTemplate(tasksNode, data))
+		.then(() => {
+			const uploadButtons = [...document.querySelectorAll('.upload-file-button')];
+			uploadButtons.forEach(button => {
+				button.addEventListener('click', event => uploadFile(event.target.dataset.taskId));
+			});
 		});
 }
 
 function deleteTasks(getIdTask){
 	return fetch('DeleteTasks', { 
+			method: 'POST',
+			body: JSON.stringify(getIdTask)
+		})
+		.then(function(response) {
+			console.log("Delete");
+			//return response.getIdTasks;
+		});
+}
+
+function deleteTasksInDb(getIdTask){
+	return fetch('DeletTaskinDataBase', { 
 			method: 'POST',
 			body: JSON.stringify(getIdTask)
 		})
@@ -62,7 +77,15 @@ const fixedTasks = document.getElementById('fixedTasks');
 const recycle_binTasks = document.getElementById('recycle_binTasks');
 const del = document.getElementById('delete');
 const excuted = document.getElementById('excuted');
+const delInDB = document.getElementById('delInDB');
 
+const uploadButtons = [...document.querySelectorAll('.upload-file-button')];
+
+console.log(uploadButtons);
+
+//document.addEventListener('click', function(){
+//	setUploadFile();
+//});
 
 document.addEventListener('DOMContentLoaded', function() {
 	loadData('tasks?section=alltask');		
@@ -95,6 +118,11 @@ excuted.addEventListener('click', function() {
 	executedTasks(getTasksIds());
 });
 
+delInDB.addEventListener('click', function () {
+	deleteTasksInDb(getTasksIds());	
+});
+
+
 function getTasksIds(){
 	const items = [...document.querySelectorAll('input[type="checkbox"]')]
 		.filter((elem = {}) => elem.checked)
@@ -102,3 +130,24 @@ function getTasksIds(){
 	console.log(JSON.stringify(items))
 	return items;
 }
+
+function uploadFile(taskId){
+	const input = document.querySelector('.file-' + taskId);
+	if (!input) {
+		return;
+	}	
+	const data = new FormData();
+	
+	data.append('file', input.files[0])
+	data.append('taskId', taskId)
+	
+	return fetch('FileUploadServlet',{
+		method: 'POST',
+		body: data
+	})
+	.then((res) => res.json())
+	.then(data => {
+		console.log(data);
+	});
+}
+
