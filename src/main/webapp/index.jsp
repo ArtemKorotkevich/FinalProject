@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,9 +53,20 @@
 							<tbody id = "tasksBody"></tbody>
 						</table>
 					</div>
+					
+					<c:if test="${section=='recycle_bin'}">
+						<c:set var="Display" value="1" />
+					</c:if>
+			<c:choose>
+				<c:when test="{Display == 1}"> 
+				 </c:when>  
+				 <c:otherwise>
+				 <input id = "delInDB" type ="button" value="delet of recycli bin"/>
 					<input id = "delete" type="button" value="delete"/>
 					<input id = "excuted" type="button" value="excuted"/>
-					<input id = "delInDB" type ="button" value="delet of recycli bin"/> 
+				</c:otherwise>
+			</c:choose>	
+
 	</div>
 	<script type="text/javascript">
 	<%@include file="/js/script.js"%>
