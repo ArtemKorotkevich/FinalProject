@@ -15,7 +15,7 @@ import by.gsu.epamlab.exception.DAOException;
 import by.gsu.epamlab.factory.TaskDAOFactory;
 
 public class FileHelper {
-  public static void upload(Task task, Part filePart, String realPath) throws IOException{
+  public static void upload(Task taskid, Part filePart, String realPath) throws IOException{
         IDAOTaskImplementation taskDAO = TaskDAOFactory.getTaskDAO("db");
     try{
       String fileName= Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -26,13 +26,13 @@ public class FileHelper {
       OutputStream outputStream = new FileOutputStream(targetFile);
       outputStream.write(byffer);
       outputStream.close();
-      taskDAO.setFileURLForTask(task, fileName);
+      taskDAO.setFileURLForTask(taskid, fileName);
     }catch(IOException e){
       throw new DAOException(e.getMessage());
     }
   }
 
-  public void download(String fileName, PrintWriter printWriter, String realPath)throws DAOException{
+  public static void download(String fileName, PrintWriter printWriter, String realPath)throws DAOException{
     try{
       FileInputStream fileInputStream = new FileInputStream(realPath + File.separator + Constant.USER_FILE_FOLDER + File.separator + fileName);
       int buffer;

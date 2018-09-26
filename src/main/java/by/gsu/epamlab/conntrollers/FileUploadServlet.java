@@ -26,17 +26,14 @@ public class FileUploadServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try{
-      HttpSession session =request.getSession();
-      List<Task> tasks = (List<Task>) session.getAttribute(Constant.TASKS);
+      int ids =Integer.parseInt(request.getParameter("taskId"));
+      System.out.println(ids);
+      Task task = new Task().setIdtasks(ids);
       Part filePart = request.getPart("file");
       System.out.println(filePart);
-      String  id = request.getParameter("taskId");
-      System.out.println(id);
       String realPath = getServletConfig().getServletContext().getRealPath(File.separator);
       System.out.println(realPath);
-      System.out.println(tasks.get(Integer.parseInt(id)) + " " + tasks);
-      FileHelper.upload(tasks.get(Integer.parseInt(id)), filePart, realPath);
-      
+      FileHelper.upload(task, filePart, realPath);
       response.sendRedirect(Constant.INDEX_PAGE);
     }catch(DAOException e){
       e.printStackTrace();

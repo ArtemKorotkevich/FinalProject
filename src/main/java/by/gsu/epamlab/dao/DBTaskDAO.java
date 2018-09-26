@@ -118,14 +118,14 @@ public class DBTaskDAO implements IDAOTaskImplementation {
   }
 
   @Override
-  public void setFileURLForTask(Task task, String fileName) throws DAOException {
-    String Update = "UPDATE eeproject.tasks SET fileURL = ? WHERE idtasks = ?;";
+  public void setFileURLForTask(Task taskId, String fileName) throws DAOException {
+    String Update = "UPDATE eeproject.tasks SET url = ? WHERE idtasks = ?;";
     PreparedStatement ps = null;
     try{
       ps = connection.prepareStatement(Update);
         synchronized (LOCK) {
-          ps.setString(1, task.getURL()); 
-          ps.setInt(2, task.getIdtasks());
+          ps.setString(1, taskId.getURL()); 
+          ps.setInt(2, taskId.getIdtasks());
           ps.execute();
         }
     }catch(SQLException e){
