@@ -36,13 +36,7 @@ public class TasksServlet extends HttpServlet {
 	      response.getWriter().println(jsonArray);
 	    }catch (DAOException e){
 	      e.printStackTrace();
-	      //ServletUtilite.jumpError(Constant.ERROR_KEY_TASK, Constant.INDEX_PAGE, request, response);
+	      ServletUtilite.jumpError(Constant.ERROR_KEY_TASK, Constant.INDEX_PAGE, request, response);
 	    }
 	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    doGet(request, response);
-	}
-
 }

@@ -40,6 +40,14 @@ public class DBTaskDAO implements IDAOTaskImplementation {
       }
     }catch (SQLException e){
       throw new DAOException(e);
+    }finally {
+      try{
+        if(connection!=null){
+          connection.close();
+        }
+      }catch(SQLException e){
+        e.printStackTrace();
+      }
     }
   }
 
@@ -73,6 +81,14 @@ public class DBTaskDAO implements IDAOTaskImplementation {
       }
     }catch(SQLException e){
       throw new DAOException(e);
+    }finally {
+      try{
+        if(connection != null){
+          connection.close();
+        }
+      }catch(SQLException e){
+        e.printStackTrace();
+      }
     }
   }
 
@@ -108,13 +124,15 @@ public class DBTaskDAO implements IDAOTaskImplementation {
       return userList;
     }catch(SQLException e){
       throw new DAOException(e);
-    }//finally {
-    //      try{
-    //      rs.close();
-    //      }catch(SQLException e){
-    //        e.printStackTrace();
-    //      }
-    //    }
+    }finally {
+      try{
+        if(connection != null){
+          connection.close();
+        }
+      }catch(SQLException e){
+        e.printStackTrace();
+      }
+    }
   }
 
   @Override
@@ -123,11 +141,11 @@ public class DBTaskDAO implements IDAOTaskImplementation {
     PreparedStatement ps = null;
     try{
       ps = connection.prepareStatement(Update);
-        synchronized (LOCK) {
-          ps.setString(1, taskId.getURL()); 
-          ps.setInt(2, taskId.getIdtasks());
-          ps.execute();
-        }
+      synchronized (LOCK) {
+        ps.setString(1, taskId.getURL()); 
+        ps.setInt(2, taskId.getIdtasks());
+        ps.execute();
+      }
     }catch(SQLException e){
       throw new DAOException(e);
     }

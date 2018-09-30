@@ -6,8 +6,7 @@
 			username="root"
 			password="root"
 			driverClassName="com.mysql.jdbc.Driver"
-			url="jdbc:mysql://localhost:3306/eeproject?autoReconnect=true"
-			validationQuery="select 11"
-			maxActive="10"
-			maxIdle="10"/>
+			url="jdbc:mysql://localhost:3306/eeproject?autoReconnect=true&amp;useSSL=false"
+			maxWaitMillis="10000" 
+			validationQuery="select 1"/>
 </Context>
