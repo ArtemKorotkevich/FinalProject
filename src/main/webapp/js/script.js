@@ -11,6 +11,7 @@ function getTableRow(item) {
 			'  <td>' + item.report + '</td>' +
 			'  <td><input class="file-'+ item.idtasks +'" type = "file" name = "file"></td>' +
 			'  <td><input type="button" class="upload-file-button" data-task-id="' + item.idtasks + '"> </td>' +
+			'<td><input type = "button" class="download-file-button data-task-id="' + item.idtasks + '"></td>'+
 			'  <td><input name="taskId" type="hidden" value="' + item.idtasks + '"></td>' +
 			'</tr>';
 }
@@ -80,35 +81,51 @@ const excuted = document.getElementById('excuted');
 const delInDB = document.getElementById('delInDB');
 
 const uploadButtons = [...document.querySelectorAll('.upload-file-button')];
+const downloadButtons = [...document.querySelectorAll('.download-file-button')];
 
 console.log(uploadButtons);
-
-//document.addEventListener('click', function(){
-//	setUploadFile();
-//});
+console.log(downloadButtons);
 
 document.addEventListener('DOMContentLoaded', function() {
 	loadData('tasks?section=alltask');		
+	document.getElementById('delInDB').style = "display:none";
+	document.getElementById('delete').style = "display:inline;"
+		document.getElementById('excuted').style = "display:inline;"
 });
 
 todayTasks.addEventListener('click', function() {
-	loadData('tasks?section=today');		
+	loadData('tasks?section=today');	
+	document.getElementById('delInDB').style = "display:none";
+	document.getElementById('delete').style = "display:inline;"
+		document.getElementById('excuted').style = "display:inline;"
 }); 
 
 tomorrowTasks.addEventListener('click', function() {
-	loadData('tasks?section=tomorrow');		
+	loadData('tasks?section=tomorrow');	
+	document.getElementById('delInDB').style = "display:none"
+		document.getElementById('delete').style = "display:inline;"
+			document.getElementById('excuted').style = "display:inline;"
 });
 
 somedayTasks.addEventListener('click', function() {
 	loadData('tasks?section=someday');		
+	document.getElementById('delInDB').style = "display:none"
+		document.getElementById('delete').style = "display:inline;"
+			document.getElementById('excuted').style = "display:inline;"
 });
 
 fixedTasks.addEventListener('click', function() {
 	loadData('tasks?section=fixed');		
+	document.getElementById('delInDB').style = "display:none"
+		document.getElementById('delete').style = "display:inline;"
+			document.getElementById('excuted').style = "display:none;"
 });
 
 recycle_binTasks.addEventListener('click', function() {
-	loadData('tasks?section=recycle_bin');		
+	loadData('tasks?section=recycle_bin');	
+	document.getElementById('delInDB').style = "display:inline;"
+		document.getElementById('delete').style = "display:none;"
+			document.getElementById('excuted').style = "display:none;"
 });
 
 del.addEventListener('click', function() {
@@ -151,3 +168,20 @@ function uploadFile(taskId){
 	});
 }
 
+//function downloadFile(taskId){
+//	const input = document.querySelector(taskId);
+//	if (!input) {
+//		return;
+//	}	
+//	return fetch('FileDownloadServlet')
+//	.then((res) => res.json())
+//	.then(data =>{
+//		console.log(data);
+//	});
+//}
+
+//function showButton(){
+//	if(delInDB.addEventListener('click',func){
+//		document.getElementById('recycle_binTasks').style = "display:block;";
+//	}
+//}

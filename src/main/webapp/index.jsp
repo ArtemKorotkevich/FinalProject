@@ -20,7 +20,7 @@
 							</div>
 							
 							 <div class="pull-right">
-							 	<button type="submit" class = "btn btn-outline-orange"><a href= "logout"> Logout </a></button>
+							 	<button type="submit" class="btn btn-primary"><a href= "logout">  Logout </a></button>
 								 	</div>
 								 		<div class="user">
 								 		<h3>hello ${user.login}|</h3>
@@ -31,12 +31,12 @@
 	</div>
 <div class="container">
 		<input type="button" value="add task"
-					onclick='location.href = "addTask.jsp"'/>
-					<input id = "todayTasks" type="button" value="Today"/>
-					<input id = "tomorrowTasks" type="button" value="Tomorrow"/>
-					<input id = "somedayTasks" type="button" value="Someday"/>
-					<input id = "fixedTasks" type="button" value="Fixed"/>
-					<input id = "recycle_binTasks" type="button" value="Recycle Bin"/>
+					onclick='location.href = "addTask.jsp"' class="btn btn-primary"/>
+					<input id = "todayTasks" type="button" value="Today" class="btn btn-primary"/>
+					<input id = "tomorrowTasks" type="button" value="Tomorrow" class="btn btn-primary"/>
+					<input id = "somedayTasks" type="button" value="Someday" class="btn btn-primary"/>
+					<input id = "fixedTasks" type="button" value="Fixed" class="btn btn-primary"/>
+					<input id = "recycle_binTasks" type="button" value="Recycle Bin" class="btn btn-primary" />
 					
 					<div id = "contentTask">
 						<table class="table table-dark">
@@ -61,9 +61,9 @@
 				<c:when test="{Display == 1}"> 
 				 </c:when>  
 				 <c:otherwise>
-				 <input id = "delInDB" type ="button" value="delet of recycli bin"/>
-					<input id = "delete" type="button" value="delete"/>
-					<input id = "excuted" type="button" value="excuted"/>
+				 <input id = "delInDB" type ="button" value="delet of recycli bin" class="btn btn-danger"/>
+					<input id = "delete" type="button" value="delete" class="btn btn-primary" />
+					<input id = "excuted" type="button" value="excuted"class="btn btn-primary" />
 				</c:otherwise>
 			</c:choose>	
 
