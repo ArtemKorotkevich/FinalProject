@@ -9,9 +9,6 @@ function getTableRow(item) {
 			'  <td>' + item.dateCreate + '</td>' +
 			'  <td>' + item.dateModified + '</td>' +
 			'  <td>' + item.report + '</td>' +
-			'  <td><input class="file-'+ item.idtasks +'" type = "file" name = "file"></td>' +
-			'  <td><input type="button" class="upload-file-button" data-task-id="' + item.idtasks + '"> </td>' +
-			'<td><input type = "button" class="download-file-button data-task-id="' + item.idtasks + '"></td>'+
 			'  <td><input name="taskId" type="hidden" value="' + item.idtasks + '"></td>' +
 			'</tr>';
 }
