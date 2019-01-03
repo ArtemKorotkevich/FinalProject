@@ -54,18 +54,10 @@
 						</table>
 					</div>
 					
-					<c:if test="${section=='recycle_bin'}">
-						<c:set var="Display" value="1" />
-					</c:if>
-			<c:choose>
-				<c:when test="{Display == 1}"> 
-				 </c:when>  
-				 <c:otherwise>
+					
 				 <input id = "delInDB" type ="button" value="delet of recycli bin" class="btn btn-danger"/>
 					<input id = "delete" type="button" value="delete" class="btn btn-primary" />
 					<input id = "excuted" type="button" value="excuted"class="btn btn-primary" />
-				</c:otherwise>
-			</c:choose>	
 
 	</div>
 	<script type="text/javascript">
